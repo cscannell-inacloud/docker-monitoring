@@ -1,0 +1,24 @@
+services:
+  prometheus:
+    container_name: {{ prometheusName }}
+    build:
+      context: ./prometheus
+      image: {{ prometheusImage }}
+    ports:
+      - {{ prometheusPort }}:9090
+  
+  cAdvisor:
+    container_name: {{ cAdvisorName }}
+    image: google/cadvisor:latest
+    ports:
+      - {{ cAdvisorPort }}:8080
+
+  grafana:
+    container_name: {{ grafanaName }}
+    build:
+      context: ./grafana
+      image: {{ grafanaImage }}
+    ports:
+      - {{ grafanaPort }}:3000
+    volumes:
+      - {{ grafanaPersistence }}:/usr/share/grafana/data:Z

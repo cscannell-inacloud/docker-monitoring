@@ -1,0 +1,43 @@
+---
+- name: Make sure "{{ composeFolder }}" folder exists
+  file:
+    path: "{{ composeFolder }}"
+    owner: "{{ hostOwner }}"
+    group: "{{ hostGroup }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Copy Dockerfiles & folders to "{{ composeFolder }}"
+  copy:
+    src: .
+    dest: "{{ composeFolder }}/"
+    mode: 0755
+    owner: "{{ hostOwner }}"
+    group: "{{ hostGroup }}"
+
+- name: Generate docker-compose file from template
+  template:
+    src: "docker-compose.yml.j2"
+    dest: "{{ composeFolder }}/docker-compose.yml"
+    mode: 0755
+    owner: "{{ hostOwner }}"
+    group: "{{ hostGroup }}"
+
+- name: Generate service file from template
+  template:
+    src: "metrics.service.j2"
+    dest: "/etc/systemd/system/{{ serviceName }}.service"
+    mode: 0755
+    owner: "{{ hostOwner }}"
+    group: "{{ hostGroup }}"
+
+- name: Make sure docker daemon is up
+  service:
+    name: docker
+    state: started
+
+- name: Start metrics service
+  systemd:
+    name: "{{ serviceName }}.service"
+    state: restarted

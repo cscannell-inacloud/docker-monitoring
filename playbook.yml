@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  become: true
+  vars_files:
+    - vars/vars.yml
+  roles:
+    - monitoring-setup

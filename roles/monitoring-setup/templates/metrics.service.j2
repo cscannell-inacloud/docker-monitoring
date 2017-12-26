@@ -1,0 +1,9 @@
+[Unit]
+Description=Metrics Docker Service  
+After=docker.service  
+Requires=docker.service
+
+[Service]
+ExecStartPre=-{{ dockerComposePath }}/docker-compose -f {{ composeFolder }}/docker-compose.yml down
+ExecStart={{ dockerComposePath }}/docker-compose -f {{ composeFolder }}/docker-compose.yml up
+ExecStop={{ dockerComposePath }}/docker-compose -f {{ composeFolder }}/docker-compose.yml stop  

@@ -1,0 +1,20 @@
+---
+composeFolder: /opt/docker-compose/monitoring
+dockerComposePath: /usr/bin
+
+grafanaName: grafana
+grafanaPort: 3000
+grafanaPersistence: grafana-persistence
+grafanaImage: odiadom/grafana:4.6.3
+
+prometheusName: prometheus
+prometheusPort: 9090
+prometheusImage: odiadom/prometheus:2.0.0
+
+cAdvisorName: cAdvisor
+cAdvisorPort: 32768
+
+serviceName: metrics
+
+hostOwner: root
+hostGroup: root
