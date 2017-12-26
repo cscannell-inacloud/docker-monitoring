@@ -1,20 +1,26 @@
 ---
+# Set up your composeFolder as well as the location of compose file
 composeFolder: /opt/docker-compose/monitoring
 dockerComposePath: /usr/bin
 
+# Set up grafana variables
 grafanaName: grafana
 grafanaPort: 3000
 grafanaPersistence: grafana-persistence
 grafanaImage: odiadom/grafana:4.6.3
 
+# Set up prometheus variables
 prometheusName: prometheus
 prometheusPort: 9090
 prometheusImage: odiadom/prometheus:2.0.0
 
+# Set up cAdvisor variables
 cAdvisorName: cAdvisor
 cAdvisorPort: 32768
 
+# Set up service name to call with systemctl 
 serviceName: metrics
 
+# Set up your desired permission on files
 hostOwner: root
 hostGroup: root
