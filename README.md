@@ -1,3 +1,5 @@
+![Grafana](https://i.imgur.com/7ToLMQi.png) ![Prometheus](https://i.imgur.com/i5injY1.png) ![cAdvisor](https://i.imgur.com/NLoyfdy.png)
+
 # Easy Monitoring - Grafana + Prometheus + cAdvisor
 So, you want to know about your Docker setup performance but you don't really know how to do it or you'd rather want to invest your time in more important tasks? Here's an easy and fast solution!
 
