@@ -17,15 +17,3 @@ scrape_configs:
   
       static_configs:
         - targets: ['localhost:9090']
-
-    - job_name: 'srvDevOps04'
-      scrape_interval: 5s
-   
-      static_configs:
-        - targets: ['192.168.212.58:32768']
-          labels:
-            group: 'desarrollo'
-
-        - targets: ['192.168.212.57:32768']
-          labels:
-            group: 'desarrollo'
