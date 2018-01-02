@@ -15,8 +15,6 @@ services:
     image: google/cadvisor:latest
     networks:
       - {{ dockerNetworkName }}
-    ports:
-      - {{ cAdvisorPort }}:8080
     volumes: 
       - /:/rootfs:ro
       - /var/run:/var/run:rw
