@@ -22,6 +22,11 @@ Once you've set up your environment, it's time to run the playbook. Do so by run
 
 `ansible-playbook playbook.yml`
 
+### Explaining the setup
 This playbook will create the folder where the docker-compose file will be located, along with the Dockerfiles of Prometheus & Grafana containers; then it'll copy the files to that folder and finally it'll run the newly created service to start the three containers.
 
 Once the process is finished, you'll have the three containers running, and you'll be able to access to Grafana using the IP of the host machine along with the desired port.
+
+You'll also be able to check on cAdvisor metrics, installed in the same host machine as Prometheus. To achieve this, the docker-compose file will create an internal network, which Prometheus will use to contact with cAdvisor metrics endpoint and retrieve all the metrics, so Grafana can use them.
+
+This should be done this way, as Docker containers can't '*curl*' the host machine IP, as it's not recognized.
