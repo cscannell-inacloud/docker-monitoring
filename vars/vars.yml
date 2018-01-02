@@ -18,6 +18,9 @@ prometheusImage: odiadom/prometheus:2.0.0
 cAdvisorName: cAdvisor
 cAdvisorPort: 32768
 
+# Set up container network name
+dockerNetworkName: monitoring
+
 # Set up service name to call with systemctl 
 serviceName: metrics
 
