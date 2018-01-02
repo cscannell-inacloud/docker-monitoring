@@ -5,20 +5,33 @@ services:
     build:
       context: ./prometheus
       image: {{ prometheusImage }}
+    networks:
+      - {{ dockerNetworkName }}
     ports:
       - {{ prometheusPort }}:9090
   
   cAdvisor:
     container_name: {{ cAdvisorName }}
     image: google/cadvisor:latest
+    networks:
+      - {{ dockerNetworkName }}
     ports:
       - {{ cAdvisorPort }}:8080
+    volumes: 
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+
 
   grafana:
     container_name: {{ grafanaName }}
     build:
       context: ./grafana
       image: {{ grafanaImage }}
+    networks:
+      - {{ dockerNetworkName }}
     ports:
       - {{ grafanaPort }}:3000
     volumes:
@@ -27,3 +40,7 @@ services:
 volumes:
   {{ grafanaPersistence }}:
     external: true
+
+networks:
+  {{ dockerNetworkName }}:
+    driver: bridge
