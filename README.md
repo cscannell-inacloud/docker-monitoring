@@ -30,3 +30,10 @@ Once the process is finished, you'll have the three containers running, and you'
 You'll also be able to check on cAdvisor metrics, installed in the same host machine as Prometheus. To achieve this, the docker-compose file will create an internal network, which Prometheus will use to contact with cAdvisor metrics endpoint and retrieve all the metrics, so Grafana can use them.
 
 This should be done this way, as Docker containers can't '*curl*' the host machine IP, as it's not recognized.
+
+### How does it look?
+The following image features a setup where Prometheus is looking at metrics extracted from two containers which uses tomcat to run a JAVA application. Those metrics are from the JVMs running inside those containers.
+
+To achieve this specific setup, you'll need a jmx_exporter to serve the metrics, as well as activate jmxremote in the JAVA_OPTS.
+
+![Dashboard](https://i.imgur.com/pMEQVjd.png)
