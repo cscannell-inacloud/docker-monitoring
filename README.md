@@ -34,4 +34,4 @@ The following image features a setup where Prometheus is looking at metrics extr
 
 To achieve this specific setup, you'll need a jmx_exporter to serve the metrics, as well as activate jmxremote in the JAVA_OPTS.
 
-![Dashboard](https://i.imgur.com/pMEQVjd.png)
+![Dashboard](https://i.imgur.com/lnLE76j.png)
