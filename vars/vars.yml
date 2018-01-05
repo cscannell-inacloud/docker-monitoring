@@ -12,6 +12,7 @@ grafanaImage: odiadom/grafana:4.6.3
 # Set up prometheus variables
 prometheusName: prometheus
 prometheusPort: 9090
+prometheusPersistence: prometheus-persistence
 prometheusImage: odiadom/prometheus:2.0.0
 
 # Set up cAdvisor variables
