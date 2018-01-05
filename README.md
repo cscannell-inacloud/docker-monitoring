@@ -3,6 +3,7 @@ So, you want to know about your Docker setup performance but you don't really kn
 
 With this project, you'll be able to generate a configuration adapted to your environment and create & run cAdvisor, Prometheus and Grafana using docker-compose as well as a .service file.
 
+&nbsp;&nbsp;
 
 ## Installation Guide
 
@@ -13,8 +14,12 @@ To use this project, you'll need the following installed on your host machine:
 - [Docker-compose](https://docs.docker.com/compose/install/)
 - [Systemd](https://wiki.archlinux.org/index.php/systemd)
 
+&nbsp;
+
 ### Set up your environment in the vars file!
 Before you start running the Ansible playbook, make sure you setup the *vars.yml* file (down *vars* folder!). This file has its variable sets commented, so you know what each of them is for.
+
+&nbsp;
 
 ### Time to run our playbook!
 Once you've set up your environment, it's time to run the playbook. Do so by running the following command where the *playbook.yml* is located:
@@ -22,7 +27,7 @@ Once you've set up your environment, it's time to run the playbook. Do so by run
 ```
 $ ansible-playbook playbook.yml
 ```
-
+&nbsp;&nbsp;
 
 ## Explaining the setup
 This playbook will create the folder where the docker-compose file will be located, along with the Dockerfiles of Prometheus & Grafana containers; then it'll copy the files to that folder and finally it'll run the newly created service to start the three containers.
@@ -33,6 +38,7 @@ You'll also be able to check on cAdvisor metrics, installed in the same host mac
 
 This should be done this way, as Docker containers can't '*curl*' the host machine IP, as it's not recognized.
 
+&nbsp;&nbsp;
 
 ## How to configure it
 
@@ -47,10 +53,14 @@ Remember to use Grafana documentation to set up your configuration file, which y
 
 You already have a custom grafana.ini with custom directories (again, due to RPM installation) in the container, but for easier localization, I've created a config folder in the root of this project containing this grafana.ini file.
 
+&nbsp;
+
 ### Setting up a Data Source
 As this projects creates an internal network in Docker, when creating your Data Source to point it to Prometheus endpoint in Grafana, you'll need to use Prometheus' container name instead of the host "public" IP. 
 
 By default, this project will name Prometheus' container to "*prometheus*" so in the HTTP settings you'll need to specify the url `http://prometheus:9090`. The Access type should be "*proxy*" as "*direct*" will not load the queries in our Dashboards. 
+
+&nbsp;
 
 ### About plugins
 Just install them by using the grafana-cli! You can just do this:
@@ -65,6 +75,7 @@ And then restart the metrics service created by the Ansible role, just by typing
 $  systemctl restart metrics
 ```
 
+&nbsp;&nbsp;
 
 ## How does it look?
 The following image features a setup where Prometheus is looking at metrics extracted from two containers which uses tomcat to run a JAVA application. Those metrics are from the JVMs running inside those containers.
