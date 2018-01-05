@@ -19,7 +19,9 @@ Before you start running the Ansible playbook, make sure you setup the *vars.yml
 ### Time to run our playbook!
 Once you've set up your environment, it's time to run the playbook. Do so by running the following command where the *playbook.yml* is located:
 
-`ansible-playbook playbook.yml`
+```
+$ ansible-playbook playbook.yml
+```
 
 
 ## Explaining the setup
@@ -37,7 +39,9 @@ This should be done this way, as Docker containers can't '*curl*' the host machi
 ### Setting up grafana.ini
 As It is right now, It's configured to use grafana.ini configuration file, located at /etc/grafana/grafana.ini due to RPM installation. You'll only need to add a new volume in the docker-compose.yml: 
 
-```{config file location}/grafana.ini:/etc/grafana/grafana.ini```
+```
+    - {config file location}/grafana.ini:/etc/grafana/grafana.ini
+```
 
 Remember to use Grafana documentation to set up your configuration file, which you can reach [here](http://docs.grafana.org/installation/configuration/).
 
