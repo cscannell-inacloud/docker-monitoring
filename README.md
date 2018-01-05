@@ -33,6 +33,8 @@ This should be done this way, as Docker containers can't '*curl*' the host machi
 
 
 ## How to configure it
+
+### Setting up grafana.ini
 As It is right now, It's configured to use grafana.ini configuration file, located at /etc/grafana/grafana.ini due to RPM installation. You'll only need to add a new volume in the docker-compose.yml: 
 
 ```{config file location}/grafana.ini:/etc/grafana/grafana.ini```
@@ -41,6 +43,10 @@ Remember to use Grafana documentation to set up your configuration file, which y
 
 You already have a custom grafana.ini with custom directories (again, due to RPM installation) in the container, but for easier localization, I've created a config folder in the root of this project containing this grafana.ini file.
 
+### Setting up a Data Source
+As this projects creates an internal network in Docker, when creating your Data Source to point it to Prometheus endpoint in Grafana, you'll need to use Prometheus' container name instead of the host "public" IP. 
+
+By default, this project will name Prometheus' container to "*prometheus*" so in the HTTP settings you'll need to specify the url `http://prometheus:9090`. The Access type should be "*proxy*" as "*direct*" will not load the queries in our Dashboards. 
 
 ## About plugins
 Just install them by using the grafana-cli! You can just `docker exec -it grafana grafana-cli plugins install {plugin name}` and then restart the metrics service created by the Ansible role, just by typing `systemctl restart metrics` and the plugin should load without a problem.
