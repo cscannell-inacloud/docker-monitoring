@@ -14,4 +14,6 @@ RUN wget ${GRAFANA_DOWNLOAD_URL} && \
 
 WORKDIR /etc/grafana
 
+COPY config/grafana.ini /etc/grafana/grafana.ini
+
 ENTRYPOINT [ "/usr/sbin/grafana-server", "--homepath=/usr/share/grafana", "--config=/etc/grafana/grafana.ini" ]
