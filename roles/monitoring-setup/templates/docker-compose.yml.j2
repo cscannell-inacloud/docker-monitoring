@@ -12,7 +12,7 @@ services:
     ports:
       - {{ prometheusPort }}:9090
     volumes:
-      - {{ prometheusPersistence }}:/opt/prometheus/data:Z
+      - {{ prometheusPersistence }}:/opt/prometheus:Z
   
   cAdvisor:
     container_name: {{ cAdvisorName }}
