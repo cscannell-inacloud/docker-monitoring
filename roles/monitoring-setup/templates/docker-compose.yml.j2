@@ -2,6 +2,8 @@ version: '3'
 services:
   prometheus:
     container_name: {{ prometheusName }}
+    privileged: true
+    user: root
     build:
       context: ./prometheus
       image: {{ prometheusImage }}
@@ -9,6 +11,8 @@ services:
       - {{ dockerNetworkName }}
     ports:
       - {{ prometheusPort }}:9090
+    volumes:
+      - {{ prometheusPersistence }}:/opt/prometheus/data:Z
   
   cAdvisor:
     container_name: {{ cAdvisorName }}
@@ -37,6 +41,7 @@ services:
 volumes:
   {{ grafanaPersistence }}:
     external: true
+  {{ prometheusPersistence }}:
 
 networks:
   {{ dockerNetworkName }}:
