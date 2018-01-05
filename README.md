@@ -52,7 +52,7 @@ As this projects creates an internal network in Docker, when creating your Data 
 
 By default, this project will name Prometheus' container to "*prometheus*" so in the HTTP settings you'll need to specify the url `http://prometheus:9090`. The Access type should be "*proxy*" as "*direct*" will not load the queries in our Dashboards. 
 
-## About plugins
+### About plugins
 Just install them by using the grafana-cli! You can just do this:
 
 ```
@@ -66,7 +66,7 @@ $  systemctl restart metrics
 ```
 
 
-### How does it look?
+## How does it look?
 The following image features a setup where Prometheus is looking at metrics extracted from two containers which uses tomcat to run a JAVA application. Those metrics are from the JVMs running inside those containers.
 
 To achieve this specific setup, you'll need a jmx_exporter to serve the metrics, as well as activate jmxremote in the JAVA_OPTS.
