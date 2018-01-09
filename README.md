@@ -38,6 +38,10 @@ You'll also be able to check on cAdvisor metrics, installed in the same host mac
 
 This should be done this way, as Docker containers can't '*curl*' the host machine IP, as it's not recognized.
 
+Also, you can add some other exporters as well: add them as you need!
+
+![Setup](https://i.imgur.com/g4IldCl.png)
+
 &nbsp;&nbsp;
 
 ## How to configure it
